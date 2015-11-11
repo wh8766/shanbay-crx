@@ -113,6 +113,11 @@ function saveToStorage() {
     });
 }
 
+//tts speaking
+var tts = function(text){
+    chrome.tts.speak(text);
+};
+
 chrome.extension.onRequest.addListener(function (request, sender, sendResponse) {
     console.log("received method: " + request.method);
     switch (request.method) {
@@ -149,6 +154,9 @@ chrome.extension.onRequest.addListener(function (request, sender, sendResponse) 
             break;
         case 'playAudio':
             playAudio(request.data['audio_url']);
+            break;
+        case 'tts':
+            tts(request.text);
             break;
         default :
             sendResponse({data: []}); // snub them.

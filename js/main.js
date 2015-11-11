@@ -165,6 +165,16 @@ $(document).on("DOMNodeInserted", '#learning-box', function () {
         case "\x1B":
             $('div.popover-crx').remove();
             return;
+        //reader
+        case 'R' :
+            var txt = $.trim($(".annotation").first().text());
+            if (txt){
+                chrome.extension.sendRequest({
+                    method: "tts",
+                    text: txt
+                });
+            }
+            return;
         //the chinese definitions C
         case 'C':
             $('div.cndf').toggle();
