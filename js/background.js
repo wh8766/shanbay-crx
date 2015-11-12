@@ -115,7 +115,7 @@ function saveToStorage() {
 
 //tts speaking
 var tts = function(text){
-    chrome.tts.speak(text);
+    chrome.tts.speak(text, {'lang': 'en-US', 'rate': 0.8});
 };
 
 chrome.extension.onRequest.addListener(function (request, sender, sendResponse) {
