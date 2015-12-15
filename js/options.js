@@ -4,7 +4,6 @@
  */
 // Saves options to localStorage.
 function save_options() {
-//    test_keys();
     localStorage["etym"] = $("input[name=etym]:checked").val();
     localStorage["click2s"] = $("input[name=click2s]:checked").val();
     localStorage["root2note"] = $("input[name=root2note]:checked").val();
@@ -57,25 +56,30 @@ function restore_options() {
 }
 
 function test_keys() {
+    save_options();
     var $textarea = $('textarea[name=web_key]');
-    $textarea.val().trim().split('\n').forEach(function (e) {
-        var term = 'conduct';
-        var url = 'http://www.dictionaryapi.com/api/v1/references/collegiate/xml/' + term + '?key=' + e;
-        getOnlineWebster(term, url, function (data) {
-            if (0 < data.length) {
-                $textarea.val(($textarea.val() + '\n' + e).trim());
-            }
-        })
-    });
+    var keys = $textarea.val().trim();
+    if (keys.length > 0)
+        keys.split('\n').forEach(function (e) {
+            var term = 'conduct';
+            var url = 'http://www.dictionaryapi.com/api/v1/references/collegiate/xml/' + term + '?key=' + e;
+            getOnlineWebster(term, url, function (data) {
+                if (0 < data.length) {
+                    $textarea.val(($textarea.val() + '\n' + e).trim());
+                    save_options();
+                }
+            })
+        });
     $textarea.val('')
-
 }
 
 function mail_me() {
     window.open("mailto:jinntrance@gmail.com?subject=Webster Keys&body=" + $('textarea[name=web_key]').val().split('\n').join(','))
 }
 
-document.addEventListener('DOMContentLoaded', restore_options);
-document.querySelector('#save').addEventListener('click', save_options);
-document.querySelector('#test').addEventListener('click', test_keys);
-document.querySelector('#mail_me').addEventListener('click', mail_me);
+document.addEventListener('DOMContentLoaded', function(){
+	restore_options();
+	document.querySelector('#save').addEventListener('click', test_keys);
+	document.querySelector('#test').addEventListener('click', test_keys);
+	document.querySelector('#mail_me').addEventListener('click', mail_me);
+});
