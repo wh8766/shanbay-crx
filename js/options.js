@@ -84,4 +84,13 @@ document.addEventListener('DOMContentLoaded', function(){
 	document.querySelector('#save').addEventListener('click', test_keys);
 	document.querySelector('#test').addEventListener('click', test_keys);
 	document.querySelector('#mail_me').addEventListener('click', mail_me);
+
+    $(".navbar-nav a").click(function(e){
+    	$(".navbar-nav li").removeClass('active');
+        $(".tab").hide();
+        var target = $(this).attr("href");
+        $(target).fadeIn();
+        $(this).parent().addClass("active");
+        e.preventDefault()
+    })
 });
