@@ -38,6 +38,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#options">功能设置</a></li>
+                    <li><a href="#tts">语音合成设置</a></li>
                     <li><a href="#shortcuts">快捷键</a></li>
                     <li><a href="#about-key">关于Keys 贡献的说明</a></li>
                 </ul>
@@ -220,20 +221,6 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <label>使用TTS（语音合成）来阅读句子</label>
-            <div class="radio">
-                <label>
-                    <input name="tts_type" type="radio" value="google" checked="checked">
-                    Google Chrome TTS (需要翻墙)
-                </label>
-                <label>
-                    <input name="tts_type" type="radio" value='baidu'>
-                    Baidu (发音不太好听…)
-                </label>
-            </div>
-        </div>
-
         <div class="form-group" id="reg_key">
             <label>Webster Key:</label>
             <textarea class="form-control" name="web_key" rows="3"></textarea>
@@ -255,6 +242,23 @@
 
     </div>
 
+    <div id="tts" class="tab" style="display: none;">
+        <h2>语音合成设置（TTS）</h2>
+        <div class="form-group">
+            <label>使用TTS（语音合成）来阅读句子</label>
+            <div class="radio">
+                <label>
+                    <input name="tts_type" type="radio" value="google" checked="checked">
+                    Google Chrome TTS (需要翻墙)
+                </label>
+                <label>
+                    <input name="tts_type" type="radio" value='baidu'>
+                    Baidu (发音不太好听…)
+                </label>
+            </div>
+        </div>
+    </div>
+
     <div id="about-key" class="tab" style="display: none;">
         <h2>关于Keys 贡献的说明</h2>
         <p>在此非常感谢之前几个用户贡献的Keys。</p>
@@ -264,8 +268,23 @@
     </div>
 
     <div id="shortcuts" class="tab" style="display: none;">
-        <h2>快捷键</h2>
+        <h2>快捷键 <small>快捷键不区分大小写</small></h2>
         请参考<a href="http://josephjctang.com/shanbay-crx/">扇贝助手增强版</a>的<b>Shortcuts</b> 部分
+
+        <h3>全局快捷键</h3>
+        <ul>
+            <li>W 全屏切换(Window)</li>
+        </ul>
+        <h3>背单词快捷键</h3>
+        <ul>
+            <li>T 添加词根到笔记noTes</li>
+            <li>Y 打开用Y户分享笔记, Z 作笔记、码字Z,</li>
+            <li>发音: A美音/B英音(拼写单词时请使用Alt+A/B)</li>
+            <li>显示隐藏: C中文释义Chinese、G英文释义enGlish、M例句exaMple、N笔记Notes、E词根(Etymology)、X派生affiX</li>
+            <li>U,J,K,L分別可选1,2,3,4</li>
+            <li>I太简单(Ignore)、O/o不认识(No)，U,J选择“认识”/“不认识”</li>
+            <li>若觉着扇贝自带词根不全，可按Ctrl+q 再网上查词源、派生</li>
+        </ul>
     </div>
 
 </div>
