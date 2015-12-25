@@ -3,288 +3,231 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Settings</title>
-    <link rel="stylesheet" href="css/bootstrap.css"/>
-    <style>
-        .container {
-            width: 800px;
-        }
-        .radio > label,
-        .checkbox > label {
-            margin-right: 1em;
-        }
-        .tab {
-            padding-bottom: 30px;
-        }
-        .footer {
-            border-top: 1px solid #e2e2e2;
-            padding: 20px 0;
-            margin-top: 30px;
-        }
-    </style>
-    <!--<link href="css/options.css" type="text/css" rel="stylesheet"/>-->
+    <link rel="stylesheet" href="css/options.css"/>
     <!--<link type="text/css" rel="stylesheet" href="css/style.css">-->
 </head>
 <body>
 
 <div id="wrapper" class="container">
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    扇贝助手设置
-                </a>
-            </div>
 
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#options">功能设置</a></li>
-                    <li><a href="#tts">语音合成设置</a></li>
-                    <li><a href="#shortcuts">快捷键</a></li>
-                    <li><a href="#about-key">关于Keys 贡献的说明</a></li>
+    <div id="navigation">
+        <h1>扇贝助手设置</h1>
+        <ul>
+            <li class="active"><a href="#options">功能设置</a></li>
+            <li><a href="#tts">语音合成设置</a></li>
+            <li><a href="#shortcuts">快捷键</a></li>
+            <li><a href="#about-key" style="margin-top: 25px;">关于Keys 贡献的说明</a></li>
+        </ul>
+    </div>
+
+    <div id="tabs">
+        <div id="options" class="tab">
+            <header>
+                <h2>功能设置</h2>
+            </header>
+
+            <ul>
+                <h3>词根来源</h3>
+                <li>
+                    <label>
+                        <input name="etym" type="radio" value="etym" checked="checked">
+                        Etymology Online
+                    </label>
+                    <label>
+                        <input name="etym" type="radio" value='webster'>
+                        Web Dictionary
+                    </label>
+                </li>
+
+                <h3>界面</h3>
+                <li>
+                    <label>
+                        <input type="checkbox" name="hider" value="roots"> 隐藏词根内容
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" name="hider" value="affix"> 隐藏词汇派生内容
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" name="hider" value="learning-examples-box"> 隐藏例句内容
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input type="checkbox" name="hider" value="notes-box"> 隐藏笔记内容
+                    </label>
+                </li>
+
+                <h3>功能</h3>
+                <li>
+                    <label>
+                        <input name="dict" type="checkbox" value="webster"> 使用Web Dictionary
+                    </label>
+                    <span>若使用英文释义词根派生，请选择对应词典</span>
+                </li>
+                <li>
+                    <label>
+                        <input name="click2s" type="checkbox" value="yes" checked="checked"> 打开"双击单词查义"
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input name="show_syllabe" type="checkbox" value="yes" checked="checked"> 显示音节划分
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input name="hide_cn" type="checkbox" value="yes"> 是否隐藏中文释义
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input name="not_pop" type="checkbox" value="yes" checked="checked"> 开启小窗定时提醒
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input name="skip_easy" type="checkbox" value="yes"> 我的词库翻页时默认过滤掉“太简单”单词
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        <input name="ctx_menu" type="checkbox" value="yes" checked="checked"> 打开“选中右键查词”功能
+                    </label>
+                    <span>重启Chrome方可生效</span>
+                </li>
+                <li>
+                    <label>
+                        <input name="web_en" type="checkbox" value="yes"> 使用Webster英文释义
+                    </label>
+                    <span>
+                        派生需要打开此项。
+                        Webster Key最好自己按照
+                        <a href="http://josephjctang.com/shanbay-crx/#webster-app-key-" target="_blank">Webster App Key 注册教程</a>
+                        注册并将Key 存于此处下方方框内。
+                    </span>
+                    <label class="sub">
+                        Webster Key
+                        <textarea class="form-control" name="web_key" rows="3"></textarea>
+                        <button class="btn btn-default" id="test">测试</button>
+                        <span>每行一个key。不能使用的key将被自动删除。可点击右方“测试”删除不可用keys。</span>
+                    </label>
+                </li>
+            </ul>
+
+            <!--<div class="form-group">默认将词根记入笔记-->
+                <!--<label>-->
+                    <!--<input name="root2note" type="radio" value="YES" disabled="disabled">-->
+                    <!--是-->
+                <!--</label>-->
+                <!--<label>-->
+                    <!--<input name="root2note" type="radio" value='no' checked="checked">-->
+                    <!--否-->
+                <!--</label>-->
+            <!--</div>-->
+            <!--<div class="form-group">默认将派生记入笔记-->
+                <!--<label>-->
+                    <!--<input name="afx2note" type="radio" value="YES">-->
+                    <!--是-->
+                <!--</label>-->
+                <!--<label>-->
+                    <!--<input name="afx2note" type="radio" value='no' checked="checked">-->
+                    <!--否-->
+                <!--</label>-->
+            <!--</div>-->
+        </div>
+
+        <div id="tts" class="tab" style="display: none;">
+            <header>
+                <h2>语音合成设置（TTS）</h2>
+            </header>
+
+            <ul>
+                <h3>使用TTS（语音合成）来阅读句子</h3>
+                <li>
+                    <label>
+                        <input name="tts_type" type="radio" value="google" checked="checked">
+                        Google Chrome TTS (需要翻墙)
+                    </label>
+                    <label>
+                        <input name="tts_type" type="radio" value='baidu'>
+                        Baidu (发音不太好听…)
+                    </label>
+                </li>
+                <h3>设置</h3>
+                <li>
+                    <label>
+                        <input name="tts_per" type="checkbox" value="yes"> 使用男性声音
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        语速调整 <input type="number" min="1" max="20" step="1"/>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        语调调整 <input type="number" min="1" max="20" step="1"/>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        音量调整 <input type="number" min="1" max="20" step="1"/>
+                    </label>
+                </li>
+                <h3>测试</h3>
+                <li>
+                    <span>Christmas waves a magic wand over this world, and behold, everything is softer and more beautiful.</span>
+                    <span>圣诞节就是世界的魔术棒，瞧，一切都变得温柔又美好！</span>
+                </li>
+            </ul>
+        </div>
+
+        <div id="about-key" class="tab" style="display: none;">
+            <header>
+                <h2>关于Keys 贡献的说明</h2>
+            </header>
+
+            <div class="content">
+                <p>在此非常感谢之前几个用户贡献的Keys。</p>
+                <p>一个key已经足够一人使用，若想把多余的keys贡献给大家使用，可email <a href="javascript:void(0);" id="mail_me">我</a>。</p>
+                <p>若不申请新key，默认就共用大家分享的keys。但现在已经达到限额的80%了。如不能正常使用Webster的功能，要么就是当日达使用上限，要么就是设置中关掉了相关Webster的部分，请检查。
+                    我之前申请的keys就因为使用量过大而被Webster勒令不能再用了，现在的共用keys 不知道能用多久，如果有童鞋愿意奉献，我再收集7、8个key就完全够当前全部用户使用了。</p>
+            </div>
+        </div>
+
+        <div id="shortcuts" class="tab" style="display: none;">
+            <header>
+                <h2>快捷键 <small>快捷键不区分大小写</small></h2>
+            </header>
+
+            <div class="content">
+                请参考<a href="http://josephjctang.com/shanbay-crx/">扇贝助手增强版</a>的<b>Shortcuts</b> 部分
+
+                <h3>全局快捷键</h3>
+                <ul>
+                    <li>W 全屏切换(Window)</li>
+                </ul>
+                <h3>背单词快捷键</h3>
+                <ul>
+                    <li>T 添加词根到笔记noTes</li>
+                    <li>Y 打开用Y户分享笔记, Z 作笔记、码字Z,</li>
+                    <li>发音: A美音/B英音(拼写单词时请使用Alt+A/B)</li>
+                    <li>显示隐藏: C中文释义Chinese、G英文释义enGlish、M例句exaMple、N笔记Notes、E词根(Etymology)、X派生affiX</li>
+                    <li>U,J,K,L分別可选1,2,3,4</li>
+                    <li>I太简单(Ignore)、O/o不认识(No)，U,J选择“认识”/“不认识”</li>
+                    <li>若觉着扇贝自带词根不全，可按Ctrl+q 再网上查词源、派生</li>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
-
-    <div id="options" class="tab">
-
-        <h2>功能设置</h2>
-
-        <div class="form-group">
-            <label>词根来源：</label>
-            <div class="radio">
-                <label>
-                    <input name="etym" type="radio" value="etym" checked="checked">
-                    Etymology Online
-                </label>
-                <label>
-                    <input name="etym" type="radio" value='webster'>
-                    Web Dictionary
-                </label>
-            </div>
         </div>
 
-        <div class="form-group">
-            <label>隐藏页面内容：</label>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="hider" value="roots">
-                    词根
-                </label>
-                <label>
-                    <input type="checkbox" name="hider" value="affix">
-                    词汇派生
-                </label>
-                <label>
-                    <input type="checkbox" name="hider" value="learning-examples-box">
-                    例句
-                </label>
-                <label>
-                    <input type="checkbox" name="hider" value="notes-box">
-                    笔记
-                </label>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>Web Dictionary 使用(若使用英文释义词根派生，请选择对应词典)：</label>
-            <div class="radio">
-                <label>
-                    <input name="dict" type="radio" value="webster">Webster Collegiate
-                </label>
-                <!--<label>-->
-                <!--<input name="dict" type="radio" value="oxford">Oxford Advanced-->
-                <!--</label>-->
-                <label>
-                    <input name="dict" type="radio" value='no' checked="checked">不使用
-                </label>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>打开"双击单词查义"</label>
-            <div class="radio">
-                <label>
-                    <input name="click2s" type="radio" value="yes" checked="checked">
-                    是
-                </label>
-                <label>
-                    <input name="click2s" type="radio" value='no'>
-                    否
-                </label>
-            </div>
-        </div>
-        <div class="form-group">
-            <label>默认显示音节划分</label>
-            <div class="radio">
-                <label>
-                    <input name="show_syllabe" type="radio" value="yes" checked="checked">
-                    是
-                </label>
-                <label>
-                    <input name="show_syllabe" type="radio" value='no'>
-                    否
-                </label>
-            </div>
-        </div>
-
-        <!--<div class="form-group">默认将词根记入笔记-->
-        <!--<label>-->
-        <!--<input name="root2note" type="radio" value="YES" disabled="disabled">-->
-        <!--是-->
-        <!--</label>-->
-        <!--<label>-->
-        <!--<input name="root2note" type="radio" value='no' checked="checked">-->
-        <!--否-->
-        <!--</label>-->
-        <!--</div>-->
-        <!--<div class="form-group">默认将派生记入笔记-->
-        <!--<label>-->
-        <!--<input name="afx2note" type="radio" value="YES">-->
-        <!--是-->
-        <!--</label>-->
-        <!--<label>-->
-        <!--<input name="afx2note" type="radio" value='no' checked="checked">-->
-        <!--否-->
-        <!--</label>-->
-        <!--</div>-->
-
-        <div class="form-group">
-            <label>默认隐藏中文释义</label>
-            <div class="radio">
-                <label>
-                    <input name="hide_cn" type="radio" value="yes">
-                    是
-                </label>
-                <label>
-                    <input name="hide_cn" type="radio" value='no' checked="checked">
-                    否
-                </label>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>默认使用Webster英文释义（派生需要打开此项）</label>
-            <div class="radio">
-                <label>
-                    <input name="web_en" type="radio" value="yes">
-                    是
-                </label>
-                <label>
-                    <input name="web_en" type="radio" value='no' checked="checked">
-                    否
-                </label>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>默认开启小窗定时提醒</label>
-            <div class="radio">
-                <label>
-                    <input name="not_pop" type="radio" value="yes" checked="checked">
-                    是
-                </label>
-                <label>
-                    <input name="not_pop" type="radio" value='no'>
-                    否
-                </label>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>我的词库翻页时默认过滤掉“太简单”单词</label>
-            <div class="radio">
-                <label>
-                    <input name="skip_easy" type="radio" value="yes">
-                    是
-                </label>
-                <label>
-                    <input name="skip_easy" type="radio" value='no' checked="checked">
-                    否
-                </label>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>默认打开“选中右键查词”功能(重启Chrome方可生效)</label>
-            <div class="radio">
-                <label>
-                    <input name="ctx_menu" type="radio" value="yes" checked="checked">
-                    是
-                </label>
-                <label>
-                    <input name="ctx_menu" type="radio" value='no'>
-                    否
-                </label>
-            </div>
-        </div>
-
-        <div class="form-group" id="reg_key">
-            <label>Webster Key:</label>
-            <textarea class="form-control" name="web_key" rows="3"></textarea>
-            <p class="help-block">
-                <button class="btn btn-default" id="test">测试</button>
-            </p>
-            <p class="help-block">
-                Webster Key最好自己按照
-                <a href="http://josephjctang.com/shanbay-crx/#webster-app-key-" target="_blank">Webster App Key 注册教程</a>
-                注册并将Key 存于此处上述方框内。
-            </p>
-            <p class="help-block">每行一个key。不能使用的key将被自动删除。可点击右方“测试”删除不可用keys。</p>
-        </div>
-
-        <div class="footer">
+        <footer>
             <button id="save" class="btn btn-primary btn-lg">保存</button>
             <span class="status"></span>
-        </div>
-
-    </div>
-
-    <div id="tts" class="tab" style="display: none;">
-        <h2>语音合成设置（TTS）</h2>
-        <div class="form-group">
-            <label>使用TTS（语音合成）来阅读句子</label>
-            <div class="radio">
-                <label>
-                    <input name="tts_type" type="radio" value="google" checked="checked">
-                    Google Chrome TTS (需要翻墙)
-                </label>
-                <label>
-                    <input name="tts_type" type="radio" value='baidu'>
-                    Baidu (发音不太好听…)
-                </label>
-            </div>
-        </div>
-    </div>
-
-    <div id="about-key" class="tab" style="display: none;">
-        <h2>关于Keys 贡献的说明</h2>
-        <p>在此非常感谢之前几个用户贡献的Keys。</p>
-        <p>一个key已经足够一人使用，若想把多余的keys贡献给大家使用，可email <a href="javascript:void(0);" id="mail_me">我</a>。</p>
-        <p>若不申请新key，默认就共用大家分享的keys。但现在已经达到限额的80%了。如不能正常使用Webster的功能，要么就是当日达使用上限，要么就是设置中关掉了相关Webster的部分，请检查。
-            我之前申请的keys就因为使用量过大而被Webster勒令不能再用了，现在的共用keys 不知道能用多久，如果有童鞋愿意奉献，我再收集7、8个key就完全够当前全部用户使用了。</p>
-    </div>
-
-    <div id="shortcuts" class="tab" style="display: none;">
-        <h2>快捷键 <small>快捷键不区分大小写</small></h2>
-        请参考<a href="http://josephjctang.com/shanbay-crx/">扇贝助手增强版</a>的<b>Shortcuts</b> 部分
-
-        <h3>全局快捷键</h3>
-        <ul>
-            <li>W 全屏切换(Window)</li>
-        </ul>
-        <h3>背单词快捷键</h3>
-        <ul>
-            <li>T 添加词根到笔记noTes</li>
-            <li>Y 打开用Y户分享笔记, Z 作笔记、码字Z,</li>
-            <li>发音: A美音/B英音(拼写单词时请使用Alt+A/B)</li>
-            <li>显示隐藏: C中文释义Chinese、G英文释义enGlish、M例句exaMple、N笔记Notes、E词根(Etymology)、X派生affiX</li>
-            <li>U,J,K,L分別可选1,2,3,4</li>
-            <li>I太简单(Ignore)、O/o不认识(No)，U,J选择“认识”/“不认识”</li>
-            <li>若觉着扇贝自带词根不全，可按Ctrl+q 再网上查词源、派生</li>
-        </ul>
+        </footer>
     </div>
 
 </div>
