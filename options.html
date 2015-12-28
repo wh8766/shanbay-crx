@@ -4,6 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Settings</title>
     <link rel="stylesheet" href="css/options.css"/>
+    <link rel="stylesheet" href="css/widgets.css"/>
     <!--<link type="text/css" rel="stylesheet" href="css/style.css">-->
 </head>
 <body>
@@ -146,36 +147,29 @@
             </header>
 
             <ul>
-                <h3>使用TTS（语音合成）来阅读句子</h3>
+                <h3>语音设定</h3>
                 <li>
                     <label>
-                        <input name="tts_type" type="radio" value="google" checked="checked">
-                        Google Chrome TTS (需要翻墙)
-                    </label>
-                    <label>
-                        <input name="tts_type" type="radio" value='baidu'>
-                        Baidu (发音不太好听…)
+                        TTS（语音合成）引擎
+                        <select name="tts_type" id="tts_type">
+                            <option value="google" selected>Google Chrome TTS (需要翻墙)</option>
+                            <option value="baidu">Baidu (发音不太好听…)</option>
+                        </select>
                     </label>
                 </li>
-                <h3>设置</h3>
+                <li>
+                    <label>
+                        音量调整 <input type="range" min="0" max="9" value="5" step="1"/> <i>50%</i>
+                    </label>
+                </li>
+                <li>
+                    <label>
+                        语速调整 <input type="range" min="0" max="9" value="5" step="1"/> <i>x1.00 ~ 200 词/分钟</i>
+                    </label>
+                </li>
                 <li>
                     <label>
                         <input name="tts_per" type="checkbox" value="yes"> 使用男性声音
-                    </label>
-                </li>
-                <li>
-                    <label>
-                        语速调整 <input type="number" min="1" max="20" step="1"/>
-                    </label>
-                </li>
-                <li>
-                    <label>
-                        语调调整 <input type="number" min="1" max="20" step="1"/>
-                    </label>
-                </li>
-                <li>
-                    <label>
-                        音量调整 <input type="number" min="1" max="20" step="1"/>
                     </label>
                 </li>
                 <h3>测试</h3>
@@ -209,24 +203,25 @@
 
                 <h3>全局快捷键</h3>
                 <ul>
-                    <li>W 全屏切换(Window)</li>
+                    <li><code>W</code> 全屏切换(Window)</li>
                 </ul>
                 <h3>背单词快捷键</h3>
                 <ul>
-                    <li>T 添加词根到笔记noTes</li>
-                    <li>Y 打开用Y户分享笔记, Z 作笔记、码字Z,</li>
-                    <li>发音: A美音/B英音(拼写单词时请使用Alt+A/B)</li>
-                    <li>显示隐藏: C中文释义Chinese、G英文释义enGlish、M例句exaMple、N笔记Notes、E词根(Etymology)、X派生affiX</li>
-                    <li>U,J,K,L分別可选1,2,3,4</li>
-                    <li>I太简单(Ignore)、O/o不认识(No)，U,J选择“认识”/“不认识”</li>
-                    <li>若觉着扇贝自带词根不全，可按Ctrl+q 再网上查词源、派生</li>
+                    <li><code>R</code> 使用TTS阅读例句</li>
+                    <!-- 未测试么？ -->
+                    <!--<li><code>T</code> 添加词根到笔记noTest</li>-->
+                    <li><code>Y</code> 打开用户分享笔记，<code>Z</code> 做笔记、码字</li>
+                    <li>发音: <code>A</code>美音/ <code>B</code>英音(拼写单词时请使用 <code>Alt+A/B</code>)</li>
+                    <li>显示隐藏: <code>C</code>中文释义Chinese、<code>G</code>英文释义enGlish、<code>M</code>例句exaMple、<code>N</code>笔记Notes、<code>E</code>词根(Etymology)、<code>X</code>派生affiX</li>
+                    <li><code>U,J,K,L</code> 分別可选1,2,3,4</li>
+                    <li><code>I</code>太简单(Ignore)、<code>O</code>不认识(No)，<code>U,J</code>选择“认识”/“不认识”</li>
+                    <li>若觉着扇贝自带词根不全，可按 <code>Ctrl+Q</code> 再网上查词源、派生</li>
                 </ul>
             </div>
         </div>
 
         <footer>
-            <button id="save" class="btn btn-primary btn-lg">保存</button>
-            <span class="status"></span>
+            <button id="save" class="btn btn-primary btn-lg">保存</button> <i id="status"></i>
         </footer>
     </div>
 

@@ -107,8 +107,9 @@ body {
     height: 0;
 }
 a {
-    color: #06c;
+    color: #2980b9;
     text-decoration: underline;
+    padding: 0 2px;
 }
 a:link {
     -webkit-tap-highlight-color: #FF5E99;
@@ -238,6 +239,14 @@ input[type="radio"] {
 input[type="number"] {
     width: 45px;
 }
+input[type='range'] {
+    -webkit-appearance: none;
+    background-color: gray;
+    height: 3px;
+    border-radius: 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
 select {
     color: #555;
 }
@@ -251,6 +260,15 @@ footer {
 small {
     font-size: 0.6em;
     color: #999;
+}
+code {
+    padding: 2px 4px;
+    font-size: 90%;
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 4px;
+    font-weight: bold;
+    font-family: 'Microsoft YaHei', 'Microsoft YaHei UI', 'SimHei', '»ªÎÄºÚÌå', sans-serif;
 }
 .content {
     padding-top: 12px;
