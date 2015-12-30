@@ -28,41 +28,38 @@
             </header>
 
             <ul>
-                <h3>词根来源</h3>
-                <li>
-                    <label>
-                        <input name="etym" type="radio" value="etym" checked="checked">
-                        Etymology Online
-                    </label>
-                    <label>
-                        <input name="etym" type="radio" value='webster'>
-                        Web Dictionary
-                    </label>
-                </li>
-
                 <h3>界面</h3>
                 <li>
                     <label>
-                        <input type="checkbox" name="hider" value="roots"> 隐藏词根内容
+                        <input type="checkbox" name="hider-roots" value="yes"> 隐藏词根内容
                     </label>
                 </li>
                 <li>
                     <label>
-                        <input type="checkbox" name="hider" value="affix"> 隐藏词汇派生内容
+                        <input type="checkbox" name="hider-affix" value="yes"> 隐藏词汇派生内容
                     </label>
                 </li>
                 <li>
                     <label>
-                        <input type="checkbox" name="hider" value="learning-examples-box"> 隐藏例句内容
+                        <input type="checkbox" name="hider-learning-examples-box" value="yes"> 隐藏例句内容
                     </label>
                 </li>
                 <li>
                     <label>
-                        <input type="checkbox" name="hider" value="notes-box"> 隐藏笔记内容
+                        <input type="checkbox" name="hider-notes-box" value="yes"> 隐藏笔记内容
                     </label>
                 </li>
 
                 <h3>功能</h3>
+                <li>
+                    词根来源
+                    <label>
+                        <select id="etym" name="etym">
+                            <option name="etym" value="etym" selected>Etymology Online</option>
+                            <option name="etym" value="webster">Web Dictionary</option>
+                        </select>
+                    </label>
+                </li>
                 <li>
                     <label>
                         <input name="dict" type="checkbox" value="webster"> 使用Web Dictionary
@@ -151,20 +148,20 @@
                 <li>
                     <label>
                         TTS（语音合成）引擎
-                        <select name="tts_type" id="tts_type">
-                            <option value="google" selected>Google Chrome TTS (需要翻墙)</option>
-                            <option value="baidu">Baidu (发音不太好听…)</option>
+                        <select id="tts_type" name="tts_type">
+                            <option name="tts_type" value="google" selected>Google Chrome TTS (需要翻墙)</option>
+                            <option name="tts_type" value="baidu">Baidu (发音不太好听…)</option>
                         </select>
                     </label>
                 </li>
                 <li>
                     <label>
-                        音量调整 <input type="range" min="0" max="9" value="5" step="1"/> <i>50%</i>
+                        音量调整 <input name="tts_vol" type="range" min="0" max="9" value="5" step="1"/> <i>50%</i>
                     </label>
                 </li>
                 <li>
                     <label>
-                        语速调整 <input type="range" min="0" max="9" value="5" step="1"/> <i>x1.00 ~ 200 词/分钟</i>
+                        语速调整 <input name="tts_speed" type="range" min="0" max="9" value="5" step="1"/> <i>x1.00 ~ 200 词/分钟</i>
                     </label>
                 </li>
                 <li>
