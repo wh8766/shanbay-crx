@@ -5,33 +5,17 @@
 // Saves options to localStorage.
 function save_options() {
     var options = {};
-    $("input:checked,input:selected").each(function(){
+    $(":checked,input:checked,input[type=range]").each(function(){
     	options[$(this).attr("name")] = $(this).val();
     });
-    //localStorage["etym"] = $("input[name=etym]:checked").val();
-    //localStorage["click2s"] = $("input[name=click2s]:checked").val();
-    //localStorage["root2note"] = $("input[name=root2note]:checked").val();
-    //localStorage["afx2note"] = $("input[name=afx2note]:checked").val();
-    //localStorage["hide_cn"] = $("input[name=hide_cn]:checked").val();
-    //localStorage["web_en"] = $("input[name=web_en]:checked").val();
-    //localStorage["not_pop"] = $("input[name=not_pop]:checked").val();
-    //localStorage["ctx_menu"] = $("input[name=ctx_menu]:checked").val();
-    //localStorage["tts_type"] = $("input[name=tts_type]:checked").val();
-    //localStorage["dict"] = $("input[name=dict]:checked").val();
-    //localStorage["skip_easy"] = $("input[name=skip_easy]:checked").val();
-    //localStorage["show_syllabe"] = $("input[name=show_syllabe]:checked").val();
-    //localStorage["hider"] = $("input[name=hider]:checkbox:checked").map(function (i, e) {
-    //    return $(e).val()
-    //}).toArray();
-    //localStorage["web_key"] = $('textarea[name=web_key]').val().trim().split('\n');
+    //options["web_key"] = $('textarea[name=web_key]').val().trim().split('\n');
 
 
     localStorage.setItem("options", JSON.stringify(options));
     // Update status to let user know options were saved.
-    var status = document.getElementById("status");
-    status.innerHTML = "保存成功";
+    $("#status").text("保存成功").fadeIn();
     setTimeout(function () {
-        status.innerHTML = "";
+        $("#status").fadeOut();
     }, 2000);
     chrome.extension.sendRequest({method: "setLocalStorage", data: localStorage});
 
@@ -41,10 +25,12 @@ function save_options() {
 function restore_options() {
     var options = JSON.parse(localStorage.getItem("options"));
     if (options){
-        console.log(options);
         for (var key in options) {
             console.log(key, options[key]);
-            $("input[name="+key+"]").val(options[key]);
+            if (options[key]){
+                $(":checkbox[name="+key+"][value="+options[key]+"]").attr("checked", true);
+                $(":input[name="+key+"]").val(options[key]);
+            }
         }
     }
 
@@ -61,7 +47,7 @@ function restore_options() {
     //$("input[name=skip_easy][value=" + localStorage["skip_easy"] + "]").attr("checked", true);
     //$("input[name=show_syllabe][value=" + localStorage["show_syllabe"] + "]").attr("checked", true);
 
-//    $('textarea[name=web_key]').val(localStorage["web_key"])
+    //$('textarea[name=web_key]').val(options["web_key"])
 
 //    var hider = localStorage["hider"];
 //    if (undefined == hider) hider = [];
