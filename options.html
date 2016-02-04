@@ -29,6 +29,11 @@
 
             <ul>
                 <h3>界面</h3>
+                <!--<li>-->
+                    <!--<label>-->
+                        <!--<input type="checkbox" name="night-mode" value="yes"> 开启夜间模式-->
+                    <!--</label>-->
+                <!--</li>-->
                 <li>
                     <label>
                         <input type="checkbox" name="hider-roots" value="yes"> 隐藏词根内容
@@ -156,24 +161,25 @@
                 </li>
                 <li>
                     <label>
-                        音量调整 <input name="tts_vol" type="range" min="0" max="9" value="5" step="1"/> <i>50%</i>
+                        音量调整 <input name="tts_vol" type="range" min="1" max="10" value="10" step="1"/> <i>50%</i>
                     </label>
                 </li>
                 <li>
                     <label>
-                        语速调整 <input name="tts_speed" type="range" min="0" max="9" value="5" step="1"/> <i>x1.00 ~ 200 词/分钟</i>
+                        语速调整 <input id="tts_speed" name="tts_speed" type="range" min="1" max="10" value="5" step="1"/> <i id="tts_speed_exp"></i>
                     </label>
                 </li>
-                <li>
-                    <label>
-                        <input name="tts_per" type="checkbox" value="yes"> 使用男性声音
-                    </label>
-                </li>
+                <!--<li>-->
+                    <!--<label>-->
+                        <!--<input name="tts_per" type="checkbox" value="yes"> 使用男性声音-->
+                    <!--</label>-->
+                <!--</li>-->
                 <h3>测试</h3>
                 <li>
                     <span>Christmas waves a magic wand over this world, and behold, everything is softer and more beautiful.</span>
                     <span>圣诞节就是世界的魔术棒，瞧，一切都变得温柔又美好！</span>
                 </li>
+                <li><button id="tts-test">播放</button></li>
             </ul>
         </div>
 
@@ -218,7 +224,7 @@
         </div>
 
         <footer>
-            <button id="save" class="btn btn-primary btn-lg">保存</button> <i id="status"></i>
+            <i id="status"></i>
         </footer>
     </div>
 

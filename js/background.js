@@ -2,7 +2,7 @@
  * @author Joseph
  */
 
-checked = false;
+var checked = false, option = JSON.parse(localStorage["options"]);
 
 $(function () {
     check_in();
@@ -12,7 +12,7 @@ $(function () {
     }, 3 * 60 * 60 * 1000);//每3h提醒一次
 
     chrome.contextMenus.removeAll(function () {
-        if (localStorage['ctx_menu'] != 'no') {
+        if (option.ctx_menu == "yes") {
             chrome.contextMenus.create({
                 "title": '在扇贝网中查找"%s"',
                 "contexts": ["selection"],
@@ -109,13 +109,24 @@ function saveToStorage() {
     // Save it using the Chrome extension storage API.
     chrome.storage.sync.set(localStorage, function() {
         // Notify that we saved.
-        message('localStorage saved');
+        console.log('localStorage saved');
     });
 }
 
 //tts speaking
 var tts = function(text){
-    chrome.tts.speak(text, {'lang': 'en-US', 'rate': 0.8});
+    if (option.tts_type == "baidu"){
+
+    }else if (option.tts_type == "google"){
+        var googleTTSoption = {
+            'lang': 'en-US',
+            'rate': Number(option.tts_speed/5),
+            'volume': Number(option.tts_vol/10),
+            'gender': option.tts_per == "yes" ? "male" : "female"
+        };
+        console.log(googleTTSoption);
+        chrome.tts.speak(text, googleTTSoption);
+    }
 };
 
 chrome.extension.onRequest.addListener(function (request, sender, sendResponse) {
@@ -132,7 +143,8 @@ chrome.extension.onRequest.addListener(function (request, sender, sendResponse) 
             });
             break;
         case "setLocalStorage":
-            window.localStorage = request.data;
+            //window.localStorage = request.data;
+            option = request.data;
             saveToStorage();
             sendResponse({data: localStorage});
             break;

@@ -158,7 +158,7 @@ $(document).on("DOMNodeInserted", '#learning-box', function () {
 }).keyup(function (e) {
     //keydown/keyup组合不区分英文字母大小写，检测他们的keycode属性时，都为大写码。
     //keypress区分大小写。
-    console.log(String.fromCharCode(e.keyCode) + " pressed");
+    //console.log(String.fromCharCode(e.keyCode) + " pressed");
     switch (String.fromCharCode(e.keyCode)) {
         //退出浮框，esc return 等
         case "\x0D":

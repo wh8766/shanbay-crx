@@ -17,7 +17,7 @@ function save_options() {
     setTimeout(function () {
         $("#status").fadeOut();
     }, 2000);
-    chrome.extension.sendRequest({method: "setLocalStorage", data: localStorage});
+    chrome.extension.sendRequest({method: "setLocalStorage", data: options});
 
 }
 
@@ -81,11 +81,31 @@ function mail_me() {
     window.open("mailto:jinntrance@gmail.com?subject=Webster Keys&body=" + $('textarea[name=web_key]').val().split('\n').join(','))
 }
 
+var getTTSOption = function(){
+    //Google speed 1 = Baidu speed 5
+};
+
 document.addEventListener('DOMContentLoaded', function(){
 	restore_options();
-	document.querySelector('#save').addEventListener('click', test_keys);
 	document.querySelector('#test').addEventListener('click', test_keys);
 	document.querySelector('#mail_me').addEventListener('click', mail_me);
+
+    $("#tts_speed").on('change', function(){
+        var speed = $(this).val();
+        var txt = "x{{rate}} ~ 约{{num}}词/分钟";
+        $("#tts_speed_exp").text(formatString(txt, {
+            rate: speed/5,
+            num: 200*(speed/5)
+        }));
+    }).change();
+    $("#tts-test").click(function(){
+        var txt = "Christmas waves a magic wand over this world, and behold, everything is softer and more beautiful.";
+        chrome.extension.sendRequest({
+            method: "tts",
+            text: txt
+        });
+    });
+    $("input").change(save_options);
 
     $("#navigation a").click(function(e){
     	$("#navigation li").removeClass('active');
@@ -94,5 +114,5 @@ document.addEventListener('DOMContentLoaded', function(){
         $(target).fadeIn();
         $(this).parent().addClass("active");
         e.preventDefault()
-    })
+    });
 });
